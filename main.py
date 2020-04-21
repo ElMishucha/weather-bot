@@ -39,28 +39,22 @@ def send_help(message):
         s += '\n'
     bot.send_message(message.chat.id, f"{s}")        
     print(message.from_user.first_name)
-@bot.message_handler(commands = ['temp', 'temperature'])
+@bot.message_handler(commands = ['temperature'])
 def temp(message):
     bot.send_message(message.chat.id, f'Сейчас в твоем городе: {celsius}° C.')
     if celsius > 10:
-        bot.send_message(message.chat.id, f'Сегодня стоило бы одеться потеплее.')
+        bot.send_message(message.chat.id, f'Сегодня стоило бы одеться полегче.')
     elif celsius > 20:
         bot.send_message(message.chat.id, f"Ухх, сегодня выходи в майке и трусах ))")
-    elif celsius < 10:
+    elif celsius < 0:
         bot.send_message(message.chat.id, f"Брррр, одева..аай ш..шшубу..уу, скк..корей")
+    elif celsius < 10:
+        bot.send_message(message.chat.id, f"Шапку не забудь!")
     print(message.from_user.first_name)
 @bot.message_handler(commands = ['wind'])
 def wind(message):
     global ang_wind
-    if int(ang_wind) % 8 == [0 or 1]:
-        ang_wind = 'N'
-    elif int(ang_wind) % 8 == [2 or 3]:
-        ang_wind = 'E'
-    elif int(ang_wind) % 8 == [4 or 5]:
-        ang_wind = 'S'
-    elif int(ang_wind) % 8 == [6 or 7]:
-        ang_wind = 'W'
-    bot.send_message(message.chat.id, f"Направление ветра: {ang_wind} от севера. Скорость: {speed_wind} м/с.")
+    bot.send_message(message.chat.id, f"Направление ветра: {ang_wind}° от севера. Скорость: {speed_wind} м/с.")
     print(message.from_user.first_name)
 @bot.message_handler(commands = ['humidity'])
 def humidity(message):
